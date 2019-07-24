@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD1508C422E8C97E006BFCF3 /* MainControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */; };
+		BD1508C722E8CABE006BFCF3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508C622E8CABE006BFCF3 /* APIService.swift */; };
+		BD1508CB22E8CAFC006BFCF3 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */; };
+		BD1508CE22E8CC2F006BFCF3 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508CD22E8CC2F006BFCF3 /* Movie.swift */; };
 		BDE8F10C22E8C8A3008EBA59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */; };
 		BDE8F10E22E8C8A3008EBA59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */; };
-		BDE8F11022E8C8A3008EBA59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10F22E8C8A3008EBA59 /* ViewController.swift */; };
+		BDE8F11022E8C8A3008EBA59 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10F22E8C8A3008EBA59 /* MainController.swift */; };
 		BDE8F11322E8C8A3008EBA59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE8F11122E8C8A3008EBA59 /* Main.storyboard */; };
 		BDE8F11522E8C8A5008EBA59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDE8F11422E8C8A5008EBA59 /* Assets.xcassets */; };
 		BDE8F11822E8C8A5008EBA59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE8F11622E8C8A5008EBA59 /* LaunchScreen.storyboard */; };
@@ -27,10 +31,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerTests.swift; sourceTree = "<group>"; };
+		BD1508C622E8CABE006BFCF3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		BD1508CD22E8CC2F006BFCF3 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		BDE8F10822E8C8A3008EBA59 /* iTunes Movies Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTunes Movies Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BDE8F10F22E8C8A3008EBA59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BDE8F10F22E8C8A3008EBA59 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		BDE8F11222E8C8A3008EBA59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BDE8F11422E8C8A5008EBA59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDE8F11722E8C8A5008EBA59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +66,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD1508C522E8CAA0006BFCF3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BD1508C622E8CABE006BFCF3 /* APIService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BD1508CC22E8CC22006BFCF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD1508CD22E8CC2F006BFCF3 /* Movie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BDE8F0FF22E8C8A3008EBA59 = {
 			isa = PBXGroup;
 			children = (
@@ -79,9 +103,11 @@
 		BDE8F10A22E8C8A3008EBA59 /* iTunes Movies Test */ = {
 			isa = PBXGroup;
 			children = (
+				BD1508CC22E8CC22006BFCF3 /* Model */,
+				BD1508C522E8CAA0006BFCF3 /* Networking */,
 				BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */,
 				BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */,
-				BDE8F10F22E8C8A3008EBA59 /* ViewController.swift */,
+				BDE8F10F22E8C8A3008EBA59 /* MainController.swift */,
 				BDE8F11122E8C8A3008EBA59 /* Main.storyboard */,
 				BDE8F11422E8C8A5008EBA59 /* Assets.xcassets */,
 				BDE8F11622E8C8A5008EBA59 /* LaunchScreen.storyboard */,
@@ -95,6 +121,8 @@
 			children = (
 				BDE8F12222E8C8A5008EBA59 /* iTunes_Movies_TestTests.swift */,
 				BDE8F12422E8C8A5008EBA59 /* Info.plist */,
+				BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */,
+				BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */,
 			);
 			path = "iTunes Movies TestTests";
 			sourceTree = "<group>";
@@ -200,9 +228,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDE8F11022E8C8A3008EBA59 /* ViewController.swift in Sources */,
+				BDE8F11022E8C8A3008EBA59 /* MainController.swift in Sources */,
 				BDE8F10C22E8C8A3008EBA59 /* AppDelegate.swift in Sources */,
+				BD1508C722E8CABE006BFCF3 /* APIService.swift in Sources */,
 				BDE8F10E22E8C8A3008EBA59 /* SceneDelegate.swift in Sources */,
+				BD1508CE22E8CC2F006BFCF3 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD1508CB22E8CAFC006BFCF3 /* APIServiceTests.swift in Sources */,
+				BD1508C422E8C97E006BFCF3 /* MainControllerTests.swift in Sources */,
 				BDE8F12322E8C8A5008EBA59 /* iTunes_Movies_TestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
