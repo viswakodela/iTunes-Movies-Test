@@ -14,7 +14,13 @@
 		BD1508CB22E8CAFC006BFCF3 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */; };
 		BD1508CE22E8CC2F006BFCF3 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508CD22E8CC2F006BFCF3 /* Movie.swift */; };
 		BD16D4F522E9FA0A000423C6 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D4F422E9FA09000423C6 /* SearchResults.swift */; };
+		BD16D4F822EA0B8F000423C6 /* GroupedMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D4F722EA0B8F000423C6 /* GroupedMovies.swift */; };
+		BD16D4FC22EA0C87000423C6 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D4FB22EA0C87000423C6 /* MainViewCell.swift */; };
+		BD16D50122EA0D2A000423C6 /* MainViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D50022EA0D2A000423C6 /* MainViewCellTests.swift */; };
 		BD50027822E90FA300BEADF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BD50027722E90FA300BEADF9 /* Alamofire */; };
+		BD69DCB422EA165100A1A6F4 /* GroupedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69DCB322EA165100A1A6F4 /* GroupedCollectionView.swift */; };
+		BD69DCB622EA170800A1A6F4 /* GroupedCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69DCB522EA170800A1A6F4 /* GroupedCollectionViewTests.swift */; };
+		BDA741E422EA251E00E5BA77 /* GroupedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA741E322EA251E00E5BA77 /* GroupedCollectionViewCell.swift */; };
 		BDE8F10C22E8C8A3008EBA59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */; };
 		BDE8F10E22E8C8A3008EBA59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */; };
 		BDE8F11022E8C8A3008EBA59 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10F22E8C8A3008EBA59 /* MainController.swift */; };
@@ -46,6 +52,12 @@
 		BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		BD1508CD22E8CC2F006BFCF3 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		BD16D4F422E9FA09000423C6 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		BD16D4F722EA0B8F000423C6 /* GroupedMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedMovies.swift; sourceTree = "<group>"; };
+		BD16D4FB22EA0C87000423C6 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		BD16D50022EA0D2A000423C6 /* MainViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCellTests.swift; sourceTree = "<group>"; };
+		BD69DCB322EA165100A1A6F4 /* GroupedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedCollectionView.swift; sourceTree = "<group>"; };
+		BD69DCB522EA170800A1A6F4 /* GroupedCollectionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedCollectionViewTests.swift; sourceTree = "<group>"; };
+		BDA741E322EA251E00E5BA77 /* GroupedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedCollectionViewCell.swift; sourceTree = "<group>"; };
 		BDE8F10822E8C8A3008EBA59 /* iTunes Movies Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTunes Movies Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,8 +114,68 @@
 			children = (
 				BD1508CD22E8CC2F006BFCF3 /* Movie.swift */,
 				BD16D4F422E9FA09000423C6 /* SearchResults.swift */,
+				BD16D4F722EA0B8F000423C6 /* GroupedMovies.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BD16D4F922EA0C5C000423C6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BDE8F10F22E8C8A3008EBA59 /* MainController.swift */,
+				BD69DCB322EA165100A1A6F4 /* GroupedCollectionView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BD16D4FA22EA0C71000423C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD16D4FB22EA0C87000423C6 /* MainViewCell.swift */,
+				BDA741E322EA251E00E5BA77 /* GroupedCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD16D4FD22EA0CEC000423C6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BDA741E122EA239000E5BA77 /* Main */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BD16D4FE22EA0CF8000423C6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BD16D4FF22EA0D04000423C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD16D50022EA0D2A000423C6 /* MainViewCellTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BDA741E122EA239000E5BA77 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */,
+				BDA741E222EA239B00E5BA77 /* Grouped */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		BDA741E222EA239B00E5BA77 /* Grouped */ = {
+			isa = PBXGroup;
+			children = (
+				BD69DCB522EA170800A1A6F4 /* GroupedCollectionViewTests.swift */,
+			);
+			path = Grouped;
 			sourceTree = "<group>";
 		};
 		BDE8F0FF22E8C8A3008EBA59 = {
@@ -129,11 +201,12 @@
 		BDE8F10A22E8C8A3008EBA59 /* iTunes Movies Test */ = {
 			isa = PBXGroup;
 			children = (
-				BD1508CC22E8CC22006BFCF3 /* Model */,
 				BD1508C522E8CAA0006BFCF3 /* Networking */,
+				BD1508CC22E8CC22006BFCF3 /* Model */,
+				BD16D4FA22EA0C71000423C6 /* View */,
+				BD16D4F922EA0C5C000423C6 /* Controller */,
 				BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */,
 				BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */,
-				BDE8F10F22E8C8A3008EBA59 /* MainController.swift */,
 				BDE8F11122E8C8A3008EBA59 /* Main.storyboard */,
 				BDE8F11422E8C8A5008EBA59 /* Assets.xcassets */,
 				BDE8F11622E8C8A5008EBA59 /* LaunchScreen.storyboard */,
@@ -147,8 +220,9 @@
 			children = (
 				BDE8F12222E8C8A5008EBA59 /* iTunes_Movies_TestTests.swift */,
 				BDE8F12422E8C8A5008EBA59 /* Info.plist */,
-				BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */,
-				BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */,
+				BD16D4FE22EA0CF8000423C6 /* Networking */,
+				BD16D4FD22EA0CEC000423C6 /* Controller */,
+				BD16D4FF22EA0D04000423C6 /* View */,
 			);
 			path = "iTunes Movies TestTests";
 			sourceTree = "<group>";
@@ -341,9 +415,13 @@
 				BDE8F11022E8C8A3008EBA59 /* MainController.swift in Sources */,
 				BDE8F10C22E8C8A3008EBA59 /* AppDelegate.swift in Sources */,
 				BD1508C722E8CABE006BFCF3 /* APIService.swift in Sources */,
+				BD69DCB422EA165100A1A6F4 /* GroupedCollectionView.swift in Sources */,
 				BDE8F10E22E8C8A3008EBA59 /* SceneDelegate.swift in Sources */,
+				BD16D4F822EA0B8F000423C6 /* GroupedMovies.swift in Sources */,
+				BD16D4FC22EA0C87000423C6 /* MainViewCell.swift in Sources */,
 				BD16D4F522E9FA0A000423C6 /* SearchResults.swift in Sources */,
 				BD1508CE22E8CC2F006BFCF3 /* Movie.swift in Sources */,
+				BDA741E422EA251E00E5BA77 /* GroupedCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +430,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD1508CB22E8CAFC006BFCF3 /* APIServiceTests.swift in Sources */,
+				BD16D50122EA0D2A000423C6 /* MainViewCellTests.swift in Sources */,
 				BD1508C422E8C97E006BFCF3 /* MainControllerTests.swift in Sources */,
+				BD69DCB622EA170800A1A6F4 /* GroupedCollectionViewTests.swift in Sources */,
 				BDE8F12322E8C8A5008EBA59 /* iTunes_Movies_TestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

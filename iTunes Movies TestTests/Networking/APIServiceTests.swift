@@ -20,7 +20,7 @@ class APIServiceTests: XCTestCase {
         
         
         // then
-        service.fetchMovies(withSearchText: "") { (movies, err) in }
+        service.fetchMovies(withSearchText: "", offset: 0, limit: 0) { (movies, err) in }
         
         XCTAssertEqual(moviesURL, "https://itunes.apple.com/search")
 //        https://itunes.apple.com/search?term=spiderman&media=movie
@@ -31,9 +31,9 @@ class APIServiceTests: XCTestCase {
 //    func testFetchMoviesArrayNotNil() {
 //        let sut = APIService.shared
 //        var moviesResponse: [Movie]?
-//        
+//
 //        sut.fetchMovies(withSearchText: NetworkURLs.searchPageURL.rawValue) { (searchRes, err) in
-//            
+//
 //            if searchRes?.results.count ?? 0 > 0 {
 //                moviesResponse =
 //                XCTAssertNotNil(moviesResponse)
@@ -47,12 +47,24 @@ class APIServiceTests: XCTestCase {
         
         let sut = APIService.shared
         
-        sut.fetchMovies(withSearchText: NetworkURLs.searchPageURL.rawValue) { (moview, err) in
+        sut.fetchMovies(withSearchText: NetworkURLs.searchPageURL.rawValue, offset: 0, limit: 0) { (moview, err) in
             if let error = err {
                 XCTAssertNotNil(error)
             }
         }
-        
     }
-
+    
+    /** Test to check whether error is not nil or gropedMovies are not nil
+     */
+    func testFetchGroupedMovies() {
+        let sut = APIService.shared
+        
+        sut.fetchGroupedMovies(withUrl: NetworkURLs.groupedDocumentaryURL.rawValue) { (group, err) in
+            if err != nil {
+                XCTAssertNotNil(err)
+            } else {
+                XCTAssertNotNil(group)
+            }
+        }
+    }
 }
