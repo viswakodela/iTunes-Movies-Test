@@ -3,14 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21F3E615497AD8065A20201D /* Pods_iTunes_Movies_TestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC14A7ACC6AB9A1AD0738B5C /* Pods_iTunes_Movies_TestTests.framework */; };
+		49B0F0330A70ADDDACCC529C /* Pods_iTunes_Movies_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EF10463FC4827371655EC0 /* Pods_iTunes_Movies_Test.framework */; };
 		BD1508C422E8C97E006BFCF3 /* MainControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */; };
 		BD1508C722E8CABE006BFCF3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508C622E8CABE006BFCF3 /* APIService.swift */; };
 		BD1508CB22E8CAFC006BFCF3 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */; };
 		BD1508CE22E8CC2F006BFCF3 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1508CD22E8CC2F006BFCF3 /* Movie.swift */; };
+		BD16D4F522E9FA0A000423C6 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D4F422E9FA09000423C6 /* SearchResults.swift */; };
+		BD50027822E90FA300BEADF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BD50027722E90FA300BEADF9 /* Alamofire */; };
 		BDE8F10C22E8C8A3008EBA59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */; };
 		BDE8F10E22E8C8A3008EBA59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */; };
 		BDE8F11022E8C8A3008EBA59 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE8F10F22E8C8A3008EBA59 /* MainController.swift */; };
@@ -31,10 +35,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00EF10463FC4827371655EC0 /* Pods_iTunes_Movies_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunes_Movies_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13BAF8034CD537185D6377C7 /* Pods-iTunes Movies TestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunes Movies TestTests.release.xcconfig"; path = "Target Support Files/Pods-iTunes Movies TestTests/Pods-iTunes Movies TestTests.release.xcconfig"; sourceTree = "<group>"; };
+		1E01E2E52088D76A3744DC95 /* Pods-iTunes Movies Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunes Movies Test.release.xcconfig"; path = "Target Support Files/Pods-iTunes Movies Test/Pods-iTunes Movies Test.release.xcconfig"; sourceTree = "<group>"; };
+		92B5EC7FF8B45D436B607F7D /* Pods-iTunes Movies TestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunes Movies TestTests.debug.xcconfig"; path = "Target Support Files/Pods-iTunes Movies TestTests/Pods-iTunes Movies TestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC14A7ACC6AB9A1AD0738B5C /* Pods_iTunes_Movies_TestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunes_Movies_TestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B63590F51E3D4A602E38476F /* Pods-iTunes Movies Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunes Movies Test.debug.xcconfig"; path = "Target Support Files/Pods-iTunes Movies Test/Pods-iTunes Movies Test.debug.xcconfig"; sourceTree = "<group>"; };
 		BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerTests.swift; sourceTree = "<group>"; };
 		BD1508C622E8CABE006BFCF3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		BD1508CA22E8CAFC006BFCF3 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		BD1508CD22E8CC2F006BFCF3 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		BD16D4F422E9FA09000423C6 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		BDE8F10822E8C8A3008EBA59 /* iTunes Movies Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTunes Movies Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE8F10B22E8C8A3008EBA59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE8F10D22E8C8A3008EBA59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B0F0330A70ADDDACCC529C /* Pods_iTunes_Movies_Test.framework in Frameworks */,
+				BD50027822E90FA300BEADF9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +73,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F3E615497AD8065A20201D /* Pods_iTunes_Movies_TestTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78084E1DA93FC50960FD523E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00EF10463FC4827371655EC0 /* Pods_iTunes_Movies_Test.framework */,
+				AC14A7ACC6AB9A1AD0738B5C /* Pods_iTunes_Movies_TestTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BD1508C522E8CAA0006BFCF3 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				BD1508CD22E8CC2F006BFCF3 /* Movie.swift */,
+				BD16D4F422E9FA09000423C6 /* SearchResults.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -88,6 +112,8 @@
 				BDE8F10A22E8C8A3008EBA59 /* iTunes Movies Test */,
 				BDE8F12122E8C8A5008EBA59 /* iTunes Movies TestTests */,
 				BDE8F10922E8C8A3008EBA59 /* Products */,
+				F17A308243146DE11DC689BB /* Pods */,
+				78084E1DA93FC50960FD523E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +153,17 @@
 			path = "iTunes Movies TestTests";
 			sourceTree = "<group>";
 		};
+		F17A308243146DE11DC689BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B63590F51E3D4A602E38476F /* Pods-iTunes Movies Test.debug.xcconfig */,
+				1E01E2E52088D76A3744DC95 /* Pods-iTunes Movies Test.release.xcconfig */,
+				92B5EC7FF8B45D436B607F7D /* Pods-iTunes Movies TestTests.debug.xcconfig */,
+				13BAF8034CD537185D6377C7 /* Pods-iTunes Movies TestTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +171,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDE8F12722E8C8A5008EBA59 /* Build configuration list for PBXNativeTarget "iTunes Movies Test" */;
 			buildPhases = (
+				D5D16AA242633D7A611602F6 /* [CP] Check Pods Manifest.lock */,
 				BDE8F10422E8C8A3008EBA59 /* Sources */,
 				BDE8F10522E8C8A3008EBA59 /* Frameworks */,
 				BDE8F10622E8C8A3008EBA59 /* Resources */,
@@ -143,6 +181,9 @@
 			dependencies = (
 			);
 			name = "iTunes Movies Test";
+			packageProductDependencies = (
+				BD50027722E90FA300BEADF9 /* Alamofire */,
+			);
 			productName = "iTunes Movies Test";
 			productReference = BDE8F10822E8C8A3008EBA59 /* iTunes Movies Test.app */;
 			productType = "com.apple.product-type.application";
@@ -151,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDE8F12A22E8C8A5008EBA59 /* Build configuration list for PBXNativeTarget "iTunes Movies TestTests" */;
 			buildPhases = (
+				141FD2EDFBCA0B3A130BE856 /* [CP] Check Pods Manifest.lock */,
 				BDE8F11A22E8C8A5008EBA59 /* Sources */,
 				BDE8F11B22E8C8A5008EBA59 /* Frameworks */,
 				BDE8F11C22E8C8A5008EBA59 /* Resources */,
+				35C99F242256F62CDA7117C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,6 +236,9 @@
 				Base,
 			);
 			mainGroup = BDE8F0FF22E8C8A3008EBA59;
+			packageReferences = (
+				BD50027622E90FA300BEADF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = BDE8F10922E8C8A3008EBA59 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -223,6 +269,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		141FD2EDFBCA0B3A130BE856 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iTunes Movies TestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35C99F242256F62CDA7117C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTunes Movies TestTests/Pods-iTunes Movies TestTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTunes Movies TestTests/Pods-iTunes Movies TestTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTunes Movies TestTests/Pods-iTunes Movies TestTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5D16AA242633D7A611602F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iTunes Movies Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BDE8F10422E8C8A3008EBA59 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -232,6 +342,7 @@
 				BDE8F10C22E8C8A3008EBA59 /* AppDelegate.swift in Sources */,
 				BD1508C722E8CABE006BFCF3 /* APIService.swift in Sources */,
 				BDE8F10E22E8C8A3008EBA59 /* SceneDelegate.swift in Sources */,
+				BD16D4F522E9FA0A000423C6 /* SearchResults.swift in Sources */,
 				BD1508CE22E8CC2F006BFCF3 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +503,7 @@
 		};
 		BDE8F12822E8C8A5008EBA59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B63590F51E3D4A602E38476F /* Pods-iTunes Movies Test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -410,6 +522,7 @@
 		};
 		BDE8F12922E8C8A5008EBA59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E01E2E52088D76A3744DC95 /* Pods-iTunes Movies Test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -428,6 +541,7 @@
 		};
 		BDE8F12B22E8C8A5008EBA59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92B5EC7FF8B45D436B607F7D /* Pods-iTunes Movies TestTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -449,6 +563,7 @@
 		};
 		BDE8F12C22E8C8A5008EBA59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13BAF8034CD537185D6377C7 /* Pods-iTunes Movies TestTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -499,6 +614,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BD50027622E90FA300BEADF9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BD50027722E90FA300BEADF9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD50027622E90FA300BEADF9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BDE8F10022E8C8A3008EBA59 /* Project object */;
 }

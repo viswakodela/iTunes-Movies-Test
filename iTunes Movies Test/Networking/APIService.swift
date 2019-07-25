@@ -7,17 +7,29 @@
 //
 
 import Foundation
+import Alamofire
 
 class APIService: NSObject {
     
-    enum NetworkURLs: String {
-        case searchPageURL = "https://itunes.apple.com/search?term=spiderman&media=movie"
-    }
-    
     static let shared = APIService()
     
-    func fetchMovies(with searchText: String, completiopn: (Result<[Movie], Error>) -> Void) {
-        
+    func fetchMovies(withSearchText searchText: String, completion: @escaping (SearchResults?, Error?) -> Void) {
+        guard let url = URL(string: NetworkURLs.searchPageURL.rawValue) else {return}
+        let params: Parameters = ["term": "spider man", "media": "movie"]
+        Alamofire.request(url,
+                          method: .get,
+                          parameters: params,
+                          encoding: URLEncoding.default,
+                          headers: nil).responseData { (respData) in
+                            guard let data = respData.data else {return}
+                            
+                            do {
+                                let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
+                                completion(searchResult, nil)
+                            } catch let error {
+                                completion(nil, error)
+                            }
+        }
     }
     
 }
