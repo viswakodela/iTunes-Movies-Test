@@ -141,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				BDA741E122EA239000E5BA77 /* Main */,
+				BDA741E222EA239B00E5BA77 /* Grouped */,
+				BD16D4FF22EA0D04000423C6 /* View */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -165,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				BD1508C322E8C97E006BFCF3 /* MainControllerTests.swift */,
-				BDA741E222EA239B00E5BA77 /* Grouped */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -222,7 +223,6 @@
 				BDE8F12422E8C8A5008EBA59 /* Info.plist */,
 				BD16D4FE22EA0CF8000423C6 /* Networking */,
 				BD16D4FD22EA0CEC000423C6 /* Controller */,
-				BD16D4FF22EA0D04000423C6 /* View */,
 			);
 			path = "iTunes Movies TestTests";
 			sourceTree = "<group>";

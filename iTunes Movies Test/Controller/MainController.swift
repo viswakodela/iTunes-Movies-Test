@@ -22,7 +22,7 @@ class MainController: UITableViewController {
     
     
     // MARK: - Properties
-    private let mainCellID = "mainCellID"
+    let mainCellID = "mainCellID"
     let tableViewRowheight: CGFloat = 300
     var groups = [MovieGroup]()
     
@@ -49,7 +49,10 @@ class MainController: UITableViewController {
         view.backgroundColor = .white
         
         tableView.backgroundColor = .white
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
+        tableView.allowsSelection = false
         tableView.rowHeight = self.tableViewRowheight
+        tableView.isScrollEnabled = false
         tableView.register(MainViewCell.self, forCellReuseIdentifier: mainCellID)
     }
     
@@ -131,6 +134,7 @@ extension MainController {
         let genre = self.groups[indexPath.row].feed.results.first?.genres.first?.name
         cell.titleLabel.text = genre
         cell.groupedCollectionView.movieGroup = self.groups[indexPath.row]
+        cell.groupedCollectionView.collectionView.reloadData()
         return cell
     }
     

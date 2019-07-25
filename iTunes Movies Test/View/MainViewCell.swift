@@ -22,7 +22,7 @@ class MainViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Documentry"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         return label
     }()
     
@@ -30,6 +30,7 @@ class MainViewCell: UITableViewCell {
     func configureLayout() {
         groupedCollectionView = GroupedCollectionView()
         guard let horizontalGroupedView = groupedCollectionView.view else {return}
+        horizontalGroupedView.translatesAutoresizingMaskIntoConstraints = false
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, horizontalGroupedView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +40,7 @@ class MainViewCell: UITableViewCell {
         addSubview(stackView)
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     

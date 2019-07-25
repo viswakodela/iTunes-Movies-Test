@@ -20,6 +20,7 @@ class GroupedCollectionView: UICollectionViewController {
     
     // MARK:- Properties
     var movieGroup: MovieGroup?
+    let groupedCollectionCellID = "groupedCollectionCellID"
     
     
     // MARK:- View Life Cycle
@@ -32,11 +33,31 @@ class GroupedCollectionView: UICollectionViewController {
     // MARK:- Helper Methods
     func configureUI() {
         collectionView.backgroundColor = .white
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: groupedCollectionCellID)
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK:- CollectionView Delegate and dataSource
+extension GroupedCollectionView: UICollectionViewDelegateFlowLayout {
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movieGroup?.feed.results.count ?? 0
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: groupedCollectionCellID, for: indexPath)
+        cell.backgroundColor = .red
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height: CGFloat = 250
+        let width = view.frame.width / 3
+        return CGSize(width: width, height: height)
     }
     
 }

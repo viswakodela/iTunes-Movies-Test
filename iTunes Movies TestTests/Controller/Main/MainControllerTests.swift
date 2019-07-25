@@ -39,6 +39,12 @@ class MainControllerTests: XCTestCase {
         XCTAssertEqual(groups.count, totalRows)
     }
     
+    func testtableViewCellID() {
+        let sut = MainController()
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(sut.mainCellID, "mainCellID")
+    }
+    
     /**Test whether the cell's textLabel is equal to the same as the one in the index of the element in Movies Array.
      */
 //    func testTableViewTextInsideThetextLabel() {
@@ -83,7 +89,6 @@ class MainControllerTests: XCTestCase {
             let indexPath = IndexPath(row: index, section: 0)
             let cell = sut.tableView.cellForRow(at: indexPath) as? MainViewCell
             XCTAssertNotNil(cell)
-            
         }
     }
         
