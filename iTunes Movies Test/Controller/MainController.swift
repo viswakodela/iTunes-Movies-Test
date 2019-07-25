@@ -11,8 +11,8 @@ import UIKit
 
 enum NetworkURLs: String {
     case searchPageURL = "https://itunes.apple.com/search"
-    case groupedDocumentaryURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/documentary/25/explicit.json"
-    case groupedActionandAdventureMovieURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/action-and-adventure/25/explicit.json"
+    case groupedDocumentaryURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/documentary/50/explicit.json"
+    case groupedActionandAdventureMovieURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/action-and-adventure/50/explicit.json"
 }
 
 class MainController: UITableViewController {

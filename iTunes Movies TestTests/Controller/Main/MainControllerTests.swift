@@ -91,7 +91,7 @@ class MainControllerTests: XCTestCase {
             XCTAssertNotNil(cell)
         }
     }
-        
+    
 
         
 //    /** Test to check whether we fetch movies form the API
