@@ -81,21 +81,25 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespaces)
         
-        APIService.shared.fetchMovies(withSearchText: searchText ?? "", offset: offset, limit: limit) { [weak self] (searchresults, err) in
-            guard let self = self else {return}
-            if let error = err {
-                // TODO:- Show Alert
-                print(error.localizedDescription)
-                return
-            }
-            self.searchResultsUpdater.movies = searchresults?.results ?? []
-            DispatchQueue.main.async {
-                self.searchResultsUpdater.collectionView.reloadData()
-            }
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { [weak self] (_) in
             
-//            if let searchResultsController = searchController.searchResultsController as? SearchResultsUpdater  {
-//                searchResultsController.view.isHidden = false
-//            }
-        }
+            guard let self = self else {return}
+            APIService.shared.fetchMovies(withSearchText: searchText ?? "", offset: self.offset, limit: self.limit) { (searchresults, err) in
+                if let error = err {
+                    // TODO:- Show Alert
+                    print(error.localizedDescription)
+                    return
+                }
+                self.searchResultsUpdater.movies = searchresults?.results ?? []
+                DispatchQueue.main.async {
+                    self.searchResultsUpdater.collectionView.reloadData()
+                }
+                
+                //            if let searchResultsController = searchController.searchResultsController as? SearchResultsUpdater  {
+                //                searchResultsController.view.isHidden = false
+                //            }
+            }
+        })
     }
 }
