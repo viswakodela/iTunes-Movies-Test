@@ -22,7 +22,7 @@ class MainControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         // then
-        XCTAssertNotNil(sut.tableView)
+        XCTAssertNotNil(sut.collectionView)
     }
     
     /** Test to check whether the cells of the TableView are equal to the movies array
@@ -34,7 +34,7 @@ class MainControllerTests: XCTestCase {
         // when
         sut.loadViewIfNeeded()
         
-        let totalRows = sut.tableView.numberOfRows(inSection: 0)
+        let totalRows = sut.collectionView.numberOfItems(inSection: 0)
         
         XCTAssertEqual(groups.count, totalRows)
     }
@@ -45,24 +45,16 @@ class MainControllerTests: XCTestCase {
         XCTAssertEqual(sut.mainCellID, "mainCellID")
     }
     
+    func testNavControllerPresent() {
+        let sut = MainController()
+        _ = UINavigationController(rootViewController: sut)
+        sut.loadViewIfNeeded()
+        XCTAssertNotNil(sut.navigationController)
+    }
+    
     /**Test whether the cell's textLabel is equal to the same as the one in the index of the element in Movies Array.
      */
-//    func testTableViewTextInsideThetextLabel() {
-//        // given
-//        let sut = MainController()
-//        
-//        // when
-//        sut.loadViewIfNeeded()
-//        
-//        // then
-//        for (index, movie) in sut.groups.enumerated() {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath)
-//            XCTAssertEqual(cell.textLabel?.text, movie.trackName)
-//        }
-//    }
-    
-    func testnavigationBarTitle() {
+    func testTableViewTextInsideThetextLabel() {
         // given
         let sut = MainController()
         
@@ -70,13 +62,20 @@ class MainControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         
         // then
-        XCTAssertEqual(sut.navigationItem.title, "Movies")
+        for (index, movie) in sut.groups.enumerated() {
+            let indexPath = IndexPath(row: index, section: 0)
+            let cell = sut.collectionView.cellForItem(at: indexPath) as? MainViewCell
+            XCTAssertEqual(cell?.titleLabel.text, movie.feed.title)
+        }
     }
     
-    func testTableViewRowHeight() {
+    func testNavBArLargeTitles() {
         let sut = MainController()
+        _ = UINavigationController(rootViewController: sut)
+        
         sut.loadViewIfNeeded()
-        XCTAssertEqual(sut.tableViewRowheight, 300)
+        
+        XCTAssertTrue(sut.navigationController!.navigationBar.prefersLargeTitles)
     }
     
     func testTestCellisMainViewCell() {
@@ -87,8 +86,19 @@ class MainControllerTests: XCTestCase {
         for (index, _) in sut.groups.enumerated() {
             
             let indexPath = IndexPath(row: index, section: 0)
-            let cell = sut.tableView.cellForRow(at: indexPath) as? MainViewCell
+            let cell = sut.collectionView.cellForItem(at: indexPath) as? MainViewCell
             XCTAssertNotNil(cell)
+        }
+    }
+    
+    func testNavBarTitle() {
+        let tabBar = TabBarController()
+        
+        if tabBar.selectedIndex == 0 {
+            let navMainVC = UINavigationController(rootViewController: MainController())
+            navMainVC.navigationItem.title = "Hello"
+            
+            XCTAssertEqual(navMainVC.navigationItem.title, "Hello")
         }
     }
     

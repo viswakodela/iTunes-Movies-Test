@@ -8,22 +8,17 @@
 
 import UIKit
 
-
-enum NetworkURLs: String {
-    case searchPageURL = "https://itunes.apple.com/search"
-    case groupedDocumentaryURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/documentary/50/explicit.json"
-    case groupedActionandAdventureMovieURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/action-and-adventure/50/explicit.json"
-}
-
-class MainController: UITableViewController {
+class MainController: UICollectionViewController {
     
     // MARK:- Init
-    
+    init() {
+        let layout = UICollectionViewFlowLayout()
+        super.init(collectionViewLayout: layout)
+    }
     
     
     // MARK: - Properties
     let mainCellID = "mainCellID"
-    let tableViewRowheight: CGFloat = 300
     var groups = [MovieGroup]()
     
     private var dispatchGroup: DispatchGroup!
@@ -48,16 +43,13 @@ class MainController: UITableViewController {
         
         view.backgroundColor = .white
         
-        tableView.backgroundColor = .white
-        tableView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
-        tableView.allowsSelection = false
-        tableView.rowHeight = self.tableViewRowheight
-        tableView.isScrollEnabled = false
-        tableView.register(MainViewCell.self, forCellReuseIdentifier: mainCellID)
+        collectionView.backgroundColor = .white
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
+        collectionView.allowsSelection = false
+        collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: mainCellID)
     }
     
     func configureNavigationBar() {
-        self.navigationItem.title = "Movies"
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -93,9 +85,27 @@ class MainController: UITableViewController {
             self.groups.append(actionGroup)
         }
         
-        dispatchGroup.notify(queue: .main) {
-            self.tableView.reloadData()
+        dispatchGroup.enter()
+        APIService.shared.fetchGroupedMovies(withUrl: NetworkURLs.groupedTVShowsURL.rawValue) { [weak self] (tvShows, err) in
+            guard let self = self else {return}
+            self.dispatchGroup.leave()
+            if let error = err {
+                // TODO:- Show Alert
+                print(error.localizedDescription)
+                return
+            }
+            guard let tvShows = tvShows else {return}
+            self.groups.append(tvShows)
         }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     /**
@@ -122,21 +132,40 @@ class MainController: UITableViewController {
 }
 
 
-// MARK:- TableView Delegate and DataSource Methods
-extension MainController {
+// MARK:- CollectionView Delegate and DataSource Methods
+extension MainController: UICollectionViewDelegateFlowLayout {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.groups.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: mainCellID, for: indexPath) as! MainViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mainCellID, for: indexPath) as! MainViewCell
         let genre = self.groups[indexPath.row].feed.results.first?.genres.first?.name
-        cell.titleLabel.text = genre
+        cell.titleLabel.text = "\(genre ?? "")"
         cell.groupedCollectionView.movieGroup = self.groups[indexPath.row]
         cell.groupedCollectionView.collectionView.reloadData()
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height: CGFloat = 300
+        let width = view.frame.width - 10
+        return CGSize(width: width, height: height)
+    }
+    
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.groups.count
+//    }
+//
+////    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: mainCellID, for: indexPath) as! MainViewCell
+//        let genre = self.groups[indexPath.row].feed.results.first?.genres.first?.name
+//        cell.titleLabel.text = genre
+//        cell.groupedCollectionView.movieGroup = self.groups[indexPath.row]
+//        cell.groupedCollectionView.collectionView.reloadData()
+//        return cell
+//    }
     
 }
 

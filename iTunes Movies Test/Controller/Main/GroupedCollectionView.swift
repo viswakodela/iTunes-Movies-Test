@@ -33,6 +33,8 @@ class GroupedCollectionView: UICollectionViewController {
     // MARK:- Helper Methods
     func configureUI() {
         collectionView.backgroundColor = .white
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(GroupedCollectionViewCell.self, forCellWithReuseIdentifier: groupedCollectionCellID)
     }
     
@@ -60,9 +62,13 @@ extension GroupedCollectionView: UICollectionViewDelegateFlowLayout {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height: CGFloat = 250
-        let width = (view.frame.width - 20) / 2
+        let width = (view.frame.width - 30) / 2
         return CGSize(width: width, height: height)
     }
     

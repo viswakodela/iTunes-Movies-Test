@@ -9,6 +9,13 @@
 import Foundation
 import Alamofire
 
+enum NetworkURLs: String {
+    case searchPageURL = "https://itunes.apple.com/search"
+    case groupedDocumentaryURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/documentary/50/explicit.json"
+    case groupedActionandAdventureMovieURL = "https://rss.itunes.apple.com/api/v1/us/movies/top-movies/action-and-adventure/50/explicit.json"
+    case groupedTVShowsURL = "https://rss.itunes.apple.com/api/v1/ca/tv-shows/top-tv-episodes/all/50/explicit.json"
+}
+
 class APIService: NSObject {
     
     static let shared = APIService()
@@ -49,5 +56,4 @@ class APIService: NSObject {
             }
         }
     }
-    
 }

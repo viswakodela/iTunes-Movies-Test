@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MainViewCell: UITableViewCell {
+class MainViewCell: UICollectionViewCell {
     
     // MARK:- Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureLayout()
     }
     
@@ -32,15 +32,20 @@ class MainViewCell: UITableViewCell {
         guard let horizontalGroupedView = groupedCollectionView.view else {return}
         horizontalGroupedView.translatesAutoresizingMaskIntoConstraints = false
         
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, horizontalGroupedView])
+        let seperatorView = UIView()
+        seperatorView.backgroundColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        seperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, horizontalGroupedView, seperatorView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 8
         
         addSubview(stackView)
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     

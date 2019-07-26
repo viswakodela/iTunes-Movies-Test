@@ -18,6 +18,8 @@ class GroupedCollectionViewTests: XCTestCase {
         super.setUp()
         self.viewController = GroupedCollectionView()
         self.mainVC = MainController()
+        mainVC.fetchGroupedMovies()
+        viewController.collectionView.reloadData()
     }
     
     func testGroupCVCellID() {
@@ -40,19 +42,11 @@ class GroupedCollectionViewTests: XCTestCase {
         }
     }
     
-//    func testCellSize() {
-//        let mainVC = MainController()
-//        let sut = GroupedCollectionView()
+//    func testCellEqualstoTheArrayCount() {
 //        
-//        mainVC.fetchGroupedMovies()
-//        mainVC.loadViewIfNeeded()
-//
-//        sut.loadViewIfNeeded()
-//        for (index, _) in sut.movieGroup.feed.results.enumerated() {
-//            let indexPath = IndexPath(item: index, section: 0)
-//            let cellSize = sut.collectionView(sut.collectionView, layout: UICollectionViewFlowLayout(), sizeForItemAt: indexPath)
-//            XCTAssertEqual(cellSize, CGSize(width: (sut.view.frame.width-20)/2, height: 250))
-//        }
+//        viewController.loadViewIfNeeded()
+//        XCTAssertEqual(viewController.movieGroup?.feed.results.count, viewController.collectionView.numberOfItems(inSection: 0))
+//        
 //    }
     
     func testCellsIsDisplayingWithMatchingImages() {
@@ -62,7 +56,5 @@ class GroupedCollectionViewTests: XCTestCase {
         viewController.loadViewIfNeeded()
         let cell = viewController.collectionView.cellForItem(at: indePath) as? GroupedCollectionViewCell
         XCTAssertEqual(cell?.movieImageView.image, UIImage(named: imageURL))
-        
-        
     }
 }

@@ -19,6 +19,12 @@ class MainViewCellTests: XCTestCase {
         XCTAssertNotNil(sut.titleLabel)
     }
     
+    func testCollectionViewNotNil() {
+        let sut = MainViewCell()
+        sut.configureLayout()
+        XCTAssertNotNil(sut.groupedCollectionView)
+    }
+    
     /** Test to checj the title lable's text is not nil
      */
     func testLabelTextNotNil() {
@@ -31,7 +37,7 @@ class MainViewCellTests: XCTestCase {
         
         for (index, group) in mainVC.groups.enumerated() {
             let indexPath = IndexPath(row: index, section: 0)
-            let cell = mainVC.tableView.cellForRow(at: indexPath) as? MainViewCell
+            let cell = mainVC.collectionView.cellForItem(at: indexPath) as? MainViewCell
             XCTAssertEqual(cell?.titleLabel.text, group.feed.results.first?.genres.first?.name)
         }
     }

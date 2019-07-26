@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import iTunes_Movies_Test
 
 class GroupsCVTests: XCTestCase {
 
@@ -30,6 +31,10 @@ class GroupsCVTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testImageViewNotNil() {
+        
     }
 
 }
