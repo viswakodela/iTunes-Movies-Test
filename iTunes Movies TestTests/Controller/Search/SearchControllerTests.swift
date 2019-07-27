@@ -32,14 +32,6 @@ class SearchControllerTests: XCTestCase {
     func testSearchBarSearchControllerNotNil() {
         let sut = SearchViewController(searchResultsUpdater: SearchResultsUpdater())
         sut.loadViewIfNeeded()
-        
-        let expectation = XCTestExpectation(description: "Search Controller not tnil")
-        
-        DispatchQueue.main.async {
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 1)
         XCTAssertNotNil(sut.searchController)
     }
     
@@ -55,7 +47,27 @@ class SearchControllerTests: XCTestCase {
         }
     }
     
+    func testSearchResultsUpdaterArrayToEmpty() {
+        let sut = SearchViewController(searchResultsUpdater: SearchResultsUpdater())
+        sut.loadViewIfNeeded()
+        
+        let expectation = XCTestExpectation(description: "Search Results Controller array Empty")
+        
+        DispatchQueue.main.async {
+            expectation.fulfill()
+        }
+        
+        if sut.searchController.searchBar.text?.count == 0 {
+            XCTAssertEqual(sut.searchResultsUpdater.movies.count, 0)
+        }
+    }
     
+    func testArrayCountEqualToCellsCount() {
+        let sut = SearchViewController(searchResultsUpdater: SearchResultsUpdater())
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.emptyArray.count, sut.tableView.numberOfRows(inSection: 0))
+    }
     
     
 

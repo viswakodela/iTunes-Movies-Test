@@ -24,7 +24,7 @@ class APIService: NSObject {
      */
     func fetchMovies(withSearchText searchText: String, offset: Int, limit: Int, completion: @escaping (SearchResults?, Error?) -> Void) {
         guard let url = URL(string: NetworkURLs.searchPageURL.rawValue) else {return}
-        let params: Parameters = ["term": "Marvel", "media": "movie", "offset": offset, "limit": limit]
+        let params: Parameters = ["term": searchText, "media": "movie", "offset": offset, "limit": limit]
         Alamofire.request(url,
                           method: .get,
                           parameters: params,
@@ -57,3 +57,5 @@ class APIService: NSObject {
         }
     }
 }
+
+
