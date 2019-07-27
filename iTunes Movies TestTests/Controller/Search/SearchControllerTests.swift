@@ -65,10 +65,40 @@ class SearchControllerTests: XCTestCase {
     func testArrayCountEqualToCellsCount() {
         let sut = SearchViewController(searchResultsUpdater: SearchResultsUpdater())
         sut.loadViewIfNeeded()
-        
         XCTAssertEqual(sut.emptyArray.count, sut.tableView.numberOfRows(inSection: 0))
     }
     
+    func testSearResultsUpdaterIsNeverNil() {
+        let sut = SearchViewController(searchResultsUpdater: SearchResultsUpdater())
+        sut.loadViewIfNeeded()
+        XCTAssertNotNil(sut.searchResultsUpdater)
+    }
     
+    func testSearchText() {
+        let sut = SearchViewController(searchResultsUpdater: SearchResultsUpdater())
+        sut.loadViewIfNeeded()
+        let searchText = sut.searchController.searchBar.text
+        XCTAssertEqual(searchText, sut.searchText)
+    }
+    
+
+    
+    
+//    func testMovieNameWithCellsTitleName() {
+//        let sut = SearchViewController(searchResultsUpdater: SearchResultsUpdater())
+//        sut.loadViewIfNeeded()
+//        
+//        let searUpdater = SearchResultsUpdater()
+//        
+//        sut.fetchData(withText: "Spider")
+//        
+//        let movies = searUpdater.movies
+//        
+//        let cell = searUpdater.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! SearchResultsUpdaterCell
+//        
+//        XCTAssertEqual(cell.moviewName.text, movies[0].trackName)
+//        
+//        
+//    }
 
 }

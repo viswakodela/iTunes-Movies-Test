@@ -23,8 +23,9 @@ class SearchViewController: UITableViewController {
     var emptyArray = [String]()
     var tableHeaderHeight: CGFloat = 150
     var timer: Timer?
-    var searchText: String?
+    var searchText = ""
     var isPaginating = false
+    var movies = [Movie]()
     
     var offset = 1
     var limit = 20
@@ -50,6 +51,38 @@ class SearchViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         
         navigationItem.searchController = searchController
+    }
+    
+    func fetchData(withText searchText: String?) {
+        
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { [weak self] (_) in
+            
+            guard let self = self else {return}
+            APIService.shared.fetchMovies(withSearchText: searchText ?? "", offset: self.offset, limit: self.limit) { (searchresults, err) in
+                if let error = err {
+                    // TODO:- Show Alert
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                self.searchResultsUpdater.searchViewController = self
+                
+                self.movies += searchresults?.results ?? []
+                
+                if let searchResults = searchresults?.resultCount {
+                    self.isPaginating = searchResults < 20 ? true : false
+                    self.offset = self.movies.count
+                    self.searchResultsUpdater.isPaginating = self.isPaginating
+                    
+                    self.searchResultsUpdater.movies = self.movies
+                    
+                    DispatchQueue.main.async {
+                        self.searchResultsUpdater.collectionView.reloadData()
+                    }
+                }
+            }
+        })
     }
     
     required init?(coder: NSCoder) {
@@ -84,59 +117,50 @@ extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespaces)
-        self.searchText = searchText
-        self.timer?.invalidate()
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { [weak self] (_) in
-            
-            guard let self = self else {return}
-            APIService.shared.fetchMovies(withSearchText: searchText ?? "", offset: self.offset, limit: self.limit) { (searchresults, err) in
-                if let error = err {
-                    // TODO:- Show Alert
-                    print(error.localizedDescription)
-                    return
-                }
-                
-                self.searchResultsUpdater.searchViewController = self
-                self.searchResultsUpdater.movies += searchresults?.results ?? []
-                
-                if let searchResults = searchresults?.resultCount {
-                    
-                    if searchResults < 20 {
-                        self.isPaginating = false
-                    } else {
-                        self.isPaginating = true
-                    }
-                    self.searchResultsUpdater.isPaginating = self.isPaginating
-                    DispatchQueue.main.async {
-                        self.searchResultsUpdater.collectionView.reloadData()
-                    }
-                }
-            }
-        })
+        self.searchText = searchText ?? ""
+        
+        if searchText!.isEmpty || searchText == "" {
+            self.searchText = ""
+            self.movies = []
+            return
+        }
+        
+        self.fetchData(withText: searchText)
     }
 }
 
 // MARK:- Search Controller Delegate
 extension SearchViewController: SearchResultsUpdaterDelegate {
     func fetchMoreMovies() {
-        APIService.shared.fetchMovies(withSearchText: self.searchText!, offset: self.offset, limit: self.limit) { [weak self] (results, err) in
-            guard let self = self else {return}
-            if let error = err {
-                // TODO:- Show Alert
-                print(error.localizedDescription)
-                return
-            }
-            self.searchResultsUpdater.movies += results?.results ?? []
-            DispatchQueue.main.async {
-                self.searchResultsUpdater.collectionView.reloadData()
-            }
-        }
+        
+        self.fetchData(withText: self.searchText)
+        
+//        APIService.shared.fetchMovies(withSearchText: self.searchText!, offset: self.offset, limit: self.limit) { [weak self] (results, err) in
+//            guard let self = self else {return}
+//            if let error = err {
+//                // TODO:- Show Alert
+//                print(error.localizedDescription)
+//                return
+//            }
+//
+//            if let searchResults = results?.resultCount {
+//                self.isPaginating = searchResults < 20 ? true : false
+//                self.searchResultsUpdater.isPaginating = self.isPaginating
+//
+////            self.searchResultsUpdater.movies += results?.results ?? []
+//                DispatchQueue.main.async {
+//                    self.searchResultsUpdater.collectionView.reloadData()
+//                }
+//            }
+//
+//        }
     }
 }
 
 // MARK:- Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchResultsUpdater.movies.removeAll()
+        self.offset = 1
+        self.movies.removeAll()
     }
 }

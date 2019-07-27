@@ -22,4 +22,11 @@ class SearchResultsUpdaterTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.moviesCellID, "moviesCellID")
     }
+    
+    func testMoviesCountequalsCellCount() {
+        let sut = SearchResultsUpdater()
+        sut.loadViewIfNeeded()
+        let totalItems = sut.collectionView.numberOfItems(inSection: 0)
+        XCTAssertEqual(sut.movies.count, totalItems)
+    }
 }

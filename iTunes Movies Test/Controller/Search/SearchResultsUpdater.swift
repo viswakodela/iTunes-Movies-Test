@@ -38,7 +38,7 @@ class SearchResultsUpdater: UICollectionViewController {
     func configureUI() {
         view.backgroundColor = .white
         collectionView.backgroundColor = .white
-        collectionView.prefetchDataSource = self
+//        collectionView.prefetchDataSource = self
         collectionView.alwaysBounceVertical = true
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.register(SearchResultsUpdaterCell.self, forCellWithReuseIdentifier: moviesCellID)
@@ -56,9 +56,20 @@ extension SearchResultsUpdater: UICollectionViewDelegateFlowLayout {
         return movies.count
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? SearchResultsUpdaterCell {
+            cell.movie = self.movies[indexPath.item]
+            
+            if indexPath.item == self.movies.count - 1 && !isPaginating {
+                self.isPaginating = true
+                delegate?.fetchMoreMovies()
+                self.isPaginating = false
+            }
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: moviesCellID, for: indexPath) as! SearchResultsUpdaterCell
-        cell.movie = self.movies[indexPath.item]
         return cell
     }
     
@@ -74,16 +85,16 @@ extension SearchResultsUpdater: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK:- Prefetch the movies when there is only 4 cells left to display
-extension SearchResultsUpdater: UICollectionViewDataSourcePrefetching {
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach { (indexpath) in
-            if indexpath.item == self.movies.count - 1 && !self.searchViewController!.isPaginating {
-                self.searchViewController!.isPaginating = true
-                self.delegate?.fetchMoreMovies()
-                self.searchViewController!.isPaginating = false
-                self.searchViewController?.offset = movies.count
-            }
-        }
-    }
-}
+//extension SearchResultsUpdater: UICollectionViewDataSourcePrefetching {
+//
+//    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+//        indexPaths.forEach { (indexpath) in
+//            if indexpath.item == self.movies.count - 1 && !self.searchViewController!.isPaginating {
+//                self.searchViewController!.isPaginating = true
+//                self.delegate?.fetchMoreMovies()
+//                self.searchViewController!.isPaginating = false
+//                self.searchViewController?.offset = movies.count
+//            }
+//        }
+//    }
+//}

@@ -35,10 +35,11 @@ class SearchResultsUpdaterCell: UICollectionViewCell {
             }
             
             if let imageURL = URL(string: movie?.artworkUrl100 ?? "") {
-                movieImageView.sd_setImage(with: imageURL) { (image, err, _, _) in
-                    let image = self.resizeImageWithAspect(image: image ?? UIImage(), scaledToMaxWidth: self.bounds.width, maxHeight: 200)
-                    self.movieImageView.image = image
-                }
+                movieImageView.sd_setImage(with: imageURL)
+//                movieImageView.sd_setImage(with: imageURL) { (image, err, _, _) in
+//                    let image = self.resizeImageWithAspect(image: image ?? UIImage(), scaledToMaxWidth: self.bounds.width, maxHeight: 200)
+//                    self.movieImageView.image = image
+//                }
             }
         }
     }
@@ -52,7 +53,7 @@ class SearchResultsUpdaterCell: UICollectionViewCell {
         return iv
     }()
     
-    private let moviewName: UILabel = {
+    let moviewName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
