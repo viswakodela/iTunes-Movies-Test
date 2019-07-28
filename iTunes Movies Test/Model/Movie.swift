@@ -11,5 +11,10 @@ import Foundation
 struct Movie: Decodable {
     let trackName: String
     var artworkUrl100: String?
-    let releaseDate: String
+    let artistName: String?
+    let releaseDate: String?
+    var trackPrice: Float?
+    var primaryGenreName: String
+    var shortDescription: String?
+    var longDescription: String?
 }

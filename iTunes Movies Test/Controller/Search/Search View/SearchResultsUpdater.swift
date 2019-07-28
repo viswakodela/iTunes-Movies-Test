@@ -10,6 +10,7 @@ import UIKit
 
 protocol SearchResultsUpdaterDelegate: class {
     func fetchMoreMovies()
+    func didSelect(movieItem movie: Movie)
 }
 
 class SearchResultsUpdater: UICollectionViewController {
@@ -38,7 +39,6 @@ class SearchResultsUpdater: UICollectionViewController {
     func configureUI() {
         view.backgroundColor = .white
         collectionView.backgroundColor = .white
-//        collectionView.prefetchDataSource = self
         collectionView.alwaysBounceVertical = true
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.register(SearchResultsUpdaterCell.self, forCellWithReuseIdentifier: moviesCellID)
@@ -81,6 +81,11 @@ extension SearchResultsUpdater: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = self.movies[indexPath.item]
+        self.delegate?.didSelect(movieItem: selectedMovie)
     }
 }
 

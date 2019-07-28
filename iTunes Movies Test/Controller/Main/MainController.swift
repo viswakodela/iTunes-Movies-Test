@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 class MainController: UICollectionViewController {
     
@@ -31,10 +32,10 @@ class MainController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         configureLayout()
         configureNavigationBar()
         fetchGroupedMovies()
-//        fetchMovies(withUrl: NetworkURLs.searchPageURL.rawValue)
     }
     
     
@@ -104,31 +105,36 @@ class MainController: UICollectionViewController {
     }
     
     
+    // MARK:- Used this reference --> https://stackoverflow.com/questions/25623272/how-to-use-scnetworkreachability-in-swift
+    func connectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
+            return false
+        }
+        
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        
+        return (isReachable && !needsConnection)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /**
-     Call this method to fetch the movies based on the users search entry
-     */
-//    func fetchMovies(withUrl urlString: String) {
-//
-//        APIService.shared.fetchMovies(withSearchText: "Marvel", offset: offset, limit: limit) { [weak self] (searchResults, err) in
-//
-//            guard let self = self else {return}
-//            if let error = err {
-//                // TODO:- Show Alert
-//                print(error.localizedDescription)
-//                return
-//            }
-//
-//            self.movies += searchResults?.results ?? []
-//
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
 }
 
 
@@ -153,19 +159,5 @@ extension MainController: UICollectionViewDelegateFlowLayout {
         let width = view.frame.width - 10
         return CGSize(width: width, height: height)
     }
-    
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.groups.count
-//    }
-//
-////    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: mainCellID, for: indexPath) as! MainViewCell
-//        let genre = self.groups[indexPath.row].feed.results.first?.genres.first?.name
-//        cell.titleLabel.text = genre
-//        cell.groupedCollectionView.movieGroup = self.groups[indexPath.row]
-//        cell.groupedCollectionView.collectionView.reloadData()
-//        return cell
-//    }
-    
 }
 

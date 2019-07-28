@@ -40,7 +40,6 @@ class SearchViewController: UITableViewController {
     // MARK:- Helper Methods
     private func configureUI() {
         view.backgroundColor = .white
-        
         tableView.tableFooterView = UIView()
     }
     
@@ -48,8 +47,8 @@ class SearchViewController: UITableViewController {
         searchController = UISearchController(searchResultsController: searchResultsUpdater)
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        navigationItem.hidesSearchBarWhenScrolling = false
         
+        navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
     }
     
@@ -124,7 +123,6 @@ extension SearchViewController: UISearchResultsUpdating {
             self.movies = []
             return
         }
-        
         self.fetchData(withText: searchText)
     }
 }
@@ -132,28 +130,14 @@ extension SearchViewController: UISearchResultsUpdating {
 // MARK:- Search Controller Delegate
 extension SearchViewController: SearchResultsUpdaterDelegate {
     func fetchMoreMovies() {
-        
         self.fetchData(withText: self.searchText)
-        
-//        APIService.shared.fetchMovies(withSearchText: self.searchText!, offset: self.offset, limit: self.limit) { [weak self] (results, err) in
-//            guard let self = self else {return}
-//            if let error = err {
-//                // TODO:- Show Alert
-//                print(error.localizedDescription)
-//                return
-//            }
-//
-//            if let searchResults = results?.resultCount {
-//                self.isPaginating = searchResults < 20 ? true : false
-//                self.searchResultsUpdater.isPaginating = self.isPaginating
-//
-////            self.searchResultsUpdater.movies += results?.results ?? []
-//                DispatchQueue.main.async {
-//                    self.searchResultsUpdater.collectionView.reloadData()
-//                }
-//            }
-//
-//        }
+    }
+    
+    func didSelect(movieItem movie: Movie) {
+        let movieDetailsController = MovieDetailsController()
+        movieDetailsController.navigationItem.title = movie.trackName
+        movieDetailsController.selectedMovie = movie
+        navigationController?.pushViewController(movieDetailsController, animated: true)
     }
 }
 
@@ -162,5 +146,15 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.offset = 1
         self.movies.removeAll()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+        self.movies.removeAll()
+        self.offset = 1
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.fetchData(withText: self.searchText)
+        }
     }
 }

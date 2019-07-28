@@ -12,7 +12,6 @@ struct MovieGroup: Decodable, Equatable {
     static func == (lhs: MovieGroup, rhs: MovieGroup) -> Bool {
         return lhs.feed.results.count == rhs.feed.results.count
     }
-    
     let feed: Feed
 }
 
