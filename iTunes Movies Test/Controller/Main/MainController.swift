@@ -9,6 +9,10 @@
 import UIKit
 import SystemConfiguration
 
+extension Notification.Name {
+    static let networkAvailabilityNotification = Notification.Name("networkAvailabilityNotification")
+}
+
 class MainController: UICollectionViewController {
     
     // MARK:- Init
@@ -29,25 +33,56 @@ class MainController: UICollectionViewController {
     
     
     // MARK:-  View Life cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        configureLayout()
-        configureNavigationBar()
-        fetchGroupedMovies()
+        NotificationCenter.default.addObserver(self, selector: #selector(obserNetworkAvailableOrNot), name: .networkAvailabilityNotification, object: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        NotificationCenter.default.addObserver(self, selector: #selector(obserNetworkAvailableOrNot), name: .networkAvailabilityNotification, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if connectedToNetworkorNot() {
+            NotificationCenter.default.post(name: .networkAvailabilityNotification, object: self, userInfo: ["networkAvailability" : true])
+        } else {
+            NotificationCenter.default.post(name: .networkAvailabilityNotification, object: self, userInfo: ["networkAvailability" : false])
+        }
+    }
     
     // MARK:- Helper Methods
     func configureLayout() {
         
         view.backgroundColor = .white
         
+        let networkLabel = UILabel()
+        networkLabel.translatesAutoresizingMaskIntoConstraints = false
+        networkLabel.text = "Network not Available..."
+        networkLabel.font = UIFont.systemFont(ofSize: 26, weight: .heavy)
+        networkLabel.numberOfLines = 0
+        
+        view.insertSubview(networkLabel, belowSubview: collectionView)
+        
+        if connectedToNetworkorNot() {
+            collectionView.isHidden = false
+            networkLabel.isHidden = true
+        } else {
+            collectionView.isHidden = true
+            networkLabel.isHidden = false
+        }
+        
+        networkLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        networkLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        
         collectionView.backgroundColor = .white
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
         collectionView.allowsSelection = false
         collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: mainCellID)
+        
     }
     
     func configureNavigationBar() {
@@ -104,9 +139,8 @@ class MainController: UICollectionViewController {
         }
     }
     
-    
     // MARK:- Used this reference --> https://stackoverflow.com/questions/25623272/how-to-use-scnetworkreachability-in-swift
-    func connectedToNetwork() -> Bool {
+    func connectedToNetworkorNot() -> Bool {
         
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
@@ -127,6 +161,7 @@ class MainController: UICollectionViewController {
         
         let isReachable = flags.contains(.reachable)
         let needsConnection = flags.contains(.connectionRequired)
+        
         
         return (isReachable && !needsConnection)
     }
@@ -158,6 +193,29 @@ extension MainController: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = 300
         let width = view.frame.width - 10
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK:- Action Methods
+extension MainController {
+    @objc func obserNetworkAvailableOrNot(notification: Notification) {
+        let userInfo = notification.userInfo as! [String : Any]
+        let isNetworkAvailable = userInfo["networkAvailability"] as! Bool
+        
+        self.groups.removeAll()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
+        if isNetworkAvailable {
+            configureLayout()
+            configureNavigationBar()
+            fetchGroupedMovies()
+        } else {
+            configureLayout()
+            configureNavigationBar()
+            print("Wi-Fi not Available...")
+        }
     }
 }
 

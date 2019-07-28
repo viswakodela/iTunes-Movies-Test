@@ -153,8 +153,6 @@ extension SearchViewController: UISearchBarDelegate {
         self.movies.removeAll()
         self.offset = 1
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.fetchData(withText: self.searchText)
-        }
+        fetchData(withText: self.searchText)
     }
 }
